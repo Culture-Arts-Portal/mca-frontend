@@ -1,0 +1,100 @@
+/* Design tokens: change colours and fonts here, not inside components. */
+:root {
+  --green: #1f6b3a;      /* Zambian flag green, deepened for text contrast */
+  --copper: #b8662a;     /* Zambia's copper */
+  --red: #c8102e;
+  --ink: #1c2321;
+  --paper: #f6f7f4;
+  --surface: #ffffff;
+  --line: #d9ddd6;
+  --muted: #59625d;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --radius: 6px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --green: #6fc28d;
+    --copper: #e0965c;
+    --ink: #e8ece9;
+    --paper: #141a17;
+    --surface: #1c2420;
+    --line: #2f3a34;
+    --muted: #a3ada7;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1, h2 { font-family: var(--font-display); line-height: 1.15; margin: 0 0 0.5em; }
+h1 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 700; }
+h2 { font-size: 1.3rem; font-weight: 500; }
+a { color: var(--green); }
+:focus-visible { outline: 3px solid var(--copper); outline-offset: 2px; }
+
+.container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+.layout { min-height: 100vh; display: flex; flex-direction: column; }
+.main { flex: 1; padding-top: 3rem; padding-bottom: 4rem; }
+.narrow { max-width: 34rem; }
+.lead { color: var(--muted); font-size: 1.15rem; max-width: 38rem; }
+
+/* Navbar */
+.navbar { background: var(--surface); border-bottom: 1px solid var(--line); }
+.navbar__inner { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.brand { display: flex; gap: 0.7rem; align-items: center; text-decoration: none; color: var(--ink); }
+.brand strong { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+.brand small { color: var(--muted); font-size: 0.85rem; }
+.brand__mark { width: 14px; height: 38px; background: linear-gradient(var(--green) 0 25%, var(--red) 25% 50%, var(--ink) 50% 75%, var(--copper) 75%); border-radius: 2px; }
+.navbar__links { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+.navbar__links a { text-decoration: none; color: var(--ink); font-weight: 600; }
+.navbar__links a.active:not(.btn) { color: var(--green); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+/* The one decorative element: a woven band inspired by chitenge fabric. */
+.pattern-band {
+  height: 10px;
+  background:
+    repeating-linear-gradient(135deg, var(--copper) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(90deg, var(--green) 0 40px, var(--ink) 40px 48px, var(--red) 48px 56px, var(--green) 56px 96px);
+}
+
+/* Buttons */
+.btn { display: inline-block; background: var(--green); color: #fff; padding: 0.7rem 1.2rem; border-radius: var(--radius); text-decoration: none; font-weight: 600; border: 2px solid var(--green); }
+.btn:hover { filter: brightness(1.1); }
+.btn--ghost { background: transparent; color: var(--green); }
+.btn--small { padding: 0.35rem 0.8rem; }
+.navbar__links a.btn { color: #fff; }
+@media (prefers-color-scheme: dark) { .btn, .navbar__links a.btn { color: #0f1a14; } .btn--ghost { color: var(--green); } }
+
+/* Home */
+.hero { padding: 2rem 0; max-width: 46rem; }
+.hero h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+
+/* Services */
+.service-list { list-style: none; padding: 0; margin: 2rem 0 0; border-top: 1px solid var(--line); }
+.service { padding: 1.5rem 0; border-bottom: 1px solid var(--line); display: grid; gap: 0.25rem; }
+.service p { margin: 0; max-width: 40rem; }
+.service__fee { color: var(--copper); font-weight: 600; }
+.status { color: var(--muted); }
+.notice { padding: 1rem 1.25rem; border-radius: var(--radius); border-left: 4px solid; margin-top: 1.5rem; }
+.notice--error { border-color: var(--red); background: color-mix(in srgb, var(--red) 8%, var(--surface)); }
+
+/* Footer */
+.footer { border-top: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 0.9rem; }
+.footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
