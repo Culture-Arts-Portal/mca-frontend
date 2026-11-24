@@ -8,6 +8,7 @@ import Register from "../pages/public/Register";
 import NotFound from "../pages/public/NotFound";
 import MyApplications from "../pages/citizen/MyApplications";
 import ServiceDetails from "../pages/public/ServiceDetails";
+import Apply from "../pages/citizen/Apply";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -22,6 +23,7 @@ export default function AppRoutes() {
         {/* Logged-in users only */}
         <Route element={<ProtectedRoute />}>
           <Route path="/my-applications" element={<MyApplications />} />
+          <Route path="/apply/:slug" element={<Apply />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
