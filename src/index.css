@@ -115,3 +115,6 @@ a { color: var(--green); }
 .btn--block { width: 100%; min-height: 52px; font: inherit; font-weight: 600; cursor: pointer; }
 .btn[disabled] { opacity: 0.6; cursor: wait; }
 .auth-switch { margin: 1.25rem 0 0; color: var(--muted); }
+/* Navbar user area (Week 2) */
+.navbar__user { color: var(--muted); font-weight: 600; }
+button.btn { font: inherit; font-weight: 600; cursor: pointer; }
