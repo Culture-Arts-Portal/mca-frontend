@@ -118,3 +118,9 @@ a { color: var(--green); }
 /* Navbar user area (Week 2) */
 .navbar__user { color: var(--muted); font-weight: 600; }
 button.btn { font: inherit; font-weight: 600; cursor: pointer; }
+/* Service details (Week 2) */
+.service-detail h2 { margin-top: 2rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem; margin: 1.5rem 0 0; padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.facts dt { font-size: 0.9rem; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+.detail-list { padding-left: 1.25rem; margin: 0 0 2rem; display: grid; gap: 0.4rem; }

@@ -7,7 +7,7 @@ import Login from "../pages/public/Login";
 import Register from "../pages/public/Register";
 import NotFound from "../pages/public/NotFound";
 import MyApplications from "../pages/citizen/MyApplications";
-
+import ServiceDetails from "../pages/public/ServiceDetails";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -15,6 +15,7 @@ export default function AppRoutes() {
         {/* Anyone can see these */}
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

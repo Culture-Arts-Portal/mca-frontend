@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getServices } from "../../api/services";
-
+import { Link } from "react-router-dom";
 export default function Services() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ export default function Services() {
       <ul className="service-list">
         {services.map((service) => (
           <li key={service.id} className="service">
-            <h2>{service.name}</h2>
+           <h2><Link to={`/services/${service.slug}`}>{service.name}</Link></h2> 
             <p>{service.description}</p>
             <p className="service__fee">
               {Number(service.fee) > 0 ? `Fee: K${Number(service.fee).toFixed(2)}` : "No fee"}
