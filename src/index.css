@@ -98,3 +98,29 @@ a { color: var(--green); }
 .footer p { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Forms (Week 2) */
+:root { --danger: #b00d27; --field-border: #b9c0b6; }
+@media (prefers-color-scheme: dark) { :root { --danger: #ff8a8a; --field-border: #4a5650; } }
+
+.auth-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(1.25rem, 4vw, 2.25rem); max-width: 32rem; }
+.form { display: grid; gap: 1.1rem; margin-top: 1.5rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.1rem; }
+.field { display: grid; gap: 0.35rem; }
+.field label { font-weight: 600; }
+.input { height: 48px; width: 100%; border: 1px solid var(--field-border); border-radius: var(--radius); padding: 0 0.9rem; font: inherit; color: var(--ink); background: var(--surface); }
+.input[aria-invalid="true"] { border: 2px solid var(--danger); }
+.field-hint { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.field-error { margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--danger); }
+.btn--block { width: 100%; min-height: 52px; font: inherit; font-weight: 600; cursor: pointer; }
+.btn[disabled] { opacity: 0.6; cursor: wait; }
+.auth-switch { margin: 1.25rem 0 0; color: var(--muted); }
+/* Navbar user area (Week 2) */
+.navbar__user { color: var(--muted); font-weight: 600; }
+button.btn { font: inherit; font-weight: 600; cursor: pointer; }
+/* Service details (Week 2) */
+.service-detail h2 { margin-top: 2rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem; margin: 1.5rem 0 0; padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.facts dt { font-size: 0.9rem; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+.detail-list { padding-left: 1.25rem; margin: 0 0 2rem; display: grid; gap: 0.4rem; }
