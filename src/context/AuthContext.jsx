@@ -4,7 +4,7 @@ import { loginUser, registerUser, getCurrentUser } from "../api/auth";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState(null);
   // If there's a saved token, we need to check it before showing protected pages.
   const [checking, setChecking] = useState(() => Boolean(localStorage.getItem("token")));
 
