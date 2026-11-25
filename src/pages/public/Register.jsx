@@ -3,21 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Field from "../../components/FormField";
 
-const EMPTY = { fullName: "", nrc: "", phone: "", email: "", password: "", confirmPassword: "" };
+const EMPTY = { name: "", phone: "", email: "", password: "", confirmPassword: "" };
 
-// Check the answers in the browser first, so people get instant feedback.
-// The backend checks them again, because the browser can't be trusted alone.
+// Rules from the auth contract in mca-infra-docs/API.md.
 function validate(v) {
   const errors = {};
-  if (v.fullName.trim().length < 3) errors.fullName = "Enter your full name as it appears on your NRC.";
-  if (!/^\d{6}\/\d{2}\/\d$/.test(v.nrc.trim())) errors.nrc = "Use the format 123456/10/1.";
-  if (!/^(\+260|0)\d{9}$/.test(v.phone.replace(/\s/g, ""))) errors.phone = "Use the format 0971234567 or +260971234567.";
+  const name = v.name.trim();
+  if (name.length < 2 || name.length > 100) errors.name = "Enter your full name (2 to 100 characters).";
+  const phone = v.phone.replace(/\s/g, "");
+  if (phone && !/^(\+260|0)\d{9}$/.test(phone)) errors.phone = "Use the format 0971234567 or +260971234567.";
   if (!/^\S+@\S+\.\S+$/.test(v.email.trim())) errors.email = "Enter a valid email address.";
   if (v.password.length < 8) errors.password = "Use at least 8 characters.";
   if (v.confirmPassword !== v.password) errors.confirmPassword = "The passwords don’t match.";
   return errors;
 }
-
 
 export default function Register() {
   const { register } = useAuth();
@@ -27,7 +26,6 @@ export default function Register() {
   const [serverError, setServerError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  // Runs on every keystroke: saves what was typed and clears that field's error.
   function handleChange(e) {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
@@ -35,22 +33,22 @@ export default function Register() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault(); // stop the browser reloading the page
+    e.preventDefault();
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
     setSubmitting(true);
     setServerError("");
+    const phone = values.phone.replace(/\s/g, "");
     try {
       await register({
-        fullName: values.fullName.trim(),
-        nrc: values.nrc.trim(),
-        phone: values.phone.replace(/\s/g, ""),
+        name: values.name.trim(),
         email: values.email.trim().toLowerCase(),
         password: values.password,
+        ...(phone && { phone }), // only send phone if it was filled in
       });
-      navigate("/services"); // logged in: go and pick a service
+      navigate("/services");
     } catch (err) {
       setServerError(err.message); // e.g. "That email is already registered"
     } finally {
@@ -72,12 +70,16 @@ export default function Register() {
       )}
 
       <form className="form" onSubmit={handleSubmit} noValidate>
-        <Field label="Full name" autoComplete="name" {...fieldProps("fullName")} />
-        <Field label="NRC number" placeholder="123456/10/1" hint="As printed on your National Registration Card." {...fieldProps("nrc")} />
-        <div className="grid-2">
-          <Field label="Phone" type="tel" placeholder="0971234567" autoComplete="tel" {...fieldProps("phone")} />
-          <Field label="Email" type="email" autoComplete="email" {...fieldProps("email")} />
-        </div>
+        <Field label="Full name" autoComplete="name" {...fieldProps("name")} />
+        <Field label="Email" type="email" autoComplete="email" {...fieldProps("email")} />
+        <Field
+          label="Phone (optional)"
+          type="tel"
+          placeholder="0971234567"
+          autoComplete="tel"
+          hint="We’ll text you when your application’s status changes."
+          {...fieldProps("phone")}
+        />
         <Field label="Password" type="password" hint="At least 8 characters." autoComplete="new-password" {...fieldProps("password")} />
         <Field label="Confirm password" type="password" autoComplete="new-password" {...fieldProps("confirmPassword")} />
         <button className="btn btn--block" type="submit" disabled={submitting}>
