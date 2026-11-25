@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 export default function Navbar() {
   const { user, isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
-  const firstName = user?.fullName?.split(" ")[0];
+    const firstName = user?.name?.split(" ")[0];
 
   function handleLogout() {
     logout();

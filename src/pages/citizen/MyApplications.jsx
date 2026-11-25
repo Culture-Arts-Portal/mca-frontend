@@ -8,7 +8,7 @@ export default function MyApplications() {
     <section>
       <h1>My applications</h1>
       <p className="lead">
-        Applications you’ve started or submitted will appear here, {user.fullName.split(" ")[0]}.
+        Applications you’ve started or submitted will appear here, {user.name.split(" ")[0]}
       </p>
       <div className="notice">
         <strong>You haven’t applied for anything yet.</strong>{" "}
