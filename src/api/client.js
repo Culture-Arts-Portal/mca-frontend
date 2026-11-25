@@ -26,7 +26,9 @@ client.interceptors.response.use(
       (error.request
         ? "Can't reach the server. Is the backend running on port 5000?"
         : error.message);
-    return Promise.reject(new Error(message));
+        const err = new Error(message);
+    err.status = error.response?.status; // e.g. 404, or undefined if the server was unreachable
+    return Promise.reject(err);
   }
 );
 
