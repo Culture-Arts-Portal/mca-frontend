@@ -124,3 +124,55 @@ button.btn { font: inherit; font-weight: 600; cursor: pointer; }
 .facts dt { font-size: 0.9rem; color: var(--muted); }
 .facts dd { margin: 0; font-weight: 600; }
 .detail-list { padding-left: 1.25rem; margin: 0 0 2rem; display: grid; gap: 0.4rem; }
+/* DynamicForm (Week 3) */
+.dform { max-width: 40rem; }
+.dform__step { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--copper); }
+.dform__title { font-size: 1.75rem; margin: 0.25rem 0 0.75rem; }
+.segments { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+.segments .seg { flex: 1; height: 5px; border-radius: 3px; background: var(--line); }
+.segments .seg.cur { background: var(--copper); }
+.segments .seg.done { background: var(--green); }
+.dform .form { margin-top: 0; }
+.dform fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.dform legend, .field-label { font-weight: 600; padding: 0; margin-bottom: 0.35rem; }
+.optional { font-weight: 400; color: var(--muted); }
+.input--area { height: auto; padding: 0.75rem 0.9rem; resize: vertical; line-height: 1.5; }
+.counter { text-align: right; }
+.notice ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+
+.choices { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.choice { position: relative; flex: 1 1 10rem; display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0.5rem 1rem; border: 1px solid var(--field-border); border-radius: var(--radius); background: var(--surface); font-weight: 600; text-align: center; cursor: pointer; }
+.choices--chips .choice { flex: 0 0 auto; border-radius: 999px; min-height: 44px; }
+.choice input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.choice:has(input:focus-visible) { outline: 3px solid var(--copper); outline-offset: 2px; }
+.choice.is-on { border: 2px solid var(--green); background: color-mix(in srgb, var(--green) 10%, var(--surface)); color: var(--green); }
+.choices--chips .choice.is-on { background: var(--green); color: var(--surface); }
+
+.check { display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.45; cursor: pointer; }
+.check input { width: 22px; height: 22px; margin: 0; flex: none; accent-color: var(--green); }
+
+.upload { position: relative; display: flex; flex-direction: column; gap: 0.15rem; padding: 1rem; border: 1.5px dashed var(--field-border); border-radius: 12px; background: var(--surface); cursor: pointer; }
+.upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.upload:has(input:focus-visible) { outline: 3px solid var(--copper); outline-offset: 2px; }
+.upload__title { font-weight: 600; color: var(--green); }
+.file-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.9rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.file-row__name { flex: 1; font-weight: 600; overflow-wrap: anywhere; }
+.link-btn { min-height: 44px; padding: 0.4rem 0.25rem; border: 0; background: none; font: inherit; font-weight: 700; color: var(--green); cursor: pointer; }
+
+.repeater-row { display: grid; gap: 1rem; margin-bottom: 0.75rem; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.repeater-row__head { display: flex; justify-content: space-between; align-items: center; }
+
+.review { display: grid; gap: 1rem; }
+.review-card { padding: 1rem 1.25rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.review-card__head { display: flex; justify-content: space-between; align-items: center; }
+.review-card h3 { margin: 0; font-family: var(--font-display); font-size: 1.1rem; }
+.review-card dl { margin: 0.5rem 0 0; }
+.review-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1rem; padding: 0.5rem 0; border-top: 1px solid var(--line); }
+.review-row dt { color: var(--muted); }
+.review-row dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.review-fee { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); font-size: 1.1rem; }
+
+.dform__actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; }
+.dform__actions .btn { flex: 1; min-height: 52px; text-align: center; }
+.dform__actions .btn--ghost { flex: 0 0 auto; }
+.preview { max-width: 100%; overflow-x: auto; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); font-size: 0.85rem; }
